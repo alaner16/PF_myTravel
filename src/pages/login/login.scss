@@ -1,4 +1,27 @@
 page-login {
     background-image: url('../../assets/icon/inicio.gif');
-    background: cover;
+    ion-content{
+        background-image: url('../../assets/icon/inicio.gif');
+        background-size: cover;
+    }
+    ion-label{
+        background-color: transparent;
+    }
+    h1{
+        color: rgb(0, 183, 255)
+    }
+    ion-header{
+        background-color: transparent !important
+    }
+    ion-content{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    ion-img, ion-item, ion-label, ion-toolbar, button, h1 {
+        background-color: transparent !important;
+        text-shadow: 1px 1px 1px rgb(0,0,0);
+      }
 }

@@ -1,17 +1,18 @@
-<ion-header>
+<ion-header *ion-header >
     
       <ion-navbar>
         <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Inicio de Sesión</ion-title>
+        <ion-title text-center>Inicio de Sesión</ion-title>
         
       </ion-navbar>
     
     </ion-header>
     
     
-    <ion-content padding>
+    <ion-content padding class="col col-center">
+      <h1 text-center>My Travel Guide</h1>
         <!-- <h1 *ngIf="authService.user | async">Bienvenido {{ (authService.user | async)?.email }}!</h1> -->
       <div >
         <ion-list>
