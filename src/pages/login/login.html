@@ -1,0 +1,35 @@
+<ion-header>
+    
+      <ion-navbar>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Inicio de Sesión</ion-title>
+        
+      </ion-navbar>
+    
+    </ion-header>
+    
+    
+    <ion-content padding>
+        <!-- <h1 *ngIf="authService.user | async">Bienvenido {{ (authService.user | async)?.email }}!</h1> -->
+      <div >
+        <ion-list>
+          <ion-item>
+            <ion-label stacked>Correo Electrónico</ion-label>
+            <ion-input type="email" [(ngModel)]="email" ></ion-input>
+          </ion-item>
+    
+          <ion-item>
+            <ion-label stacked>Contraseña</ion-label>
+            <ion-input type="password" [(ngModel)]="password"></ion-input>
+          </ion-item>
+          <hr>
+          <div padding>
+            <button ion-button full (click)="login()" [disabled]="!email || !password">Iniciar Sesión</button>
+          </div>
+      
+        </ion-list>
+      </div>
+    </ion-content>
+    
