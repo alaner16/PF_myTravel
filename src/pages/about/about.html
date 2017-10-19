@@ -1,11 +1,37 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      About
+    <ion-title text-center>
+      Buscar
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-
+    
+  <ion-list>
+    <ion-item>
+        <ion-label floating>Que Quieres Visitar?</ion-label>
+        <ion-item>
+          <ion-label>Filtro?</ion-label>
+          <ion-checkbox color="dark" checked="true"></ion-checkbox>
+        </ion-item> 
+        <ion-input type="text" [(ngModel)]="buscar" value=""></ion-input>
+    </ion-item>
+    <button ion-button full [disabled]="!buscar">Buscar</button>
+  </ion-list>
+  <ion-badge item-end>
+    <ion-item>
+      <h1 text-center>Cerro De La Memoria</h1>
+      <img src="../../assets/icon/cerro.jpg">
+      <ion-icon name="star" item-start></ion-icon>
+      Visitas
+      <ion-badge item-end>300k</ion-badge>
+    </ion-item>
+  </ion-badge>
+  <!-- <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+      {{ item }}
+    </ion-item>
+  </ion-list> -->
 </ion-content>
