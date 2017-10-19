@@ -1,17 +1,44 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title text-center>Recomendados</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+    <ion-slides pager>
+        
+          <ion-slide style="background-color: rgb(145, 165, 201)">
+            <div>
+              <img src="../../assets/icon/topo.jpg">
+              <ion-fab  right bottom>
+                <button ion-fab mini><ion-icon name="pin"></ion-icon></button>
+              </ion-fab>
+            </div>
+            <h1>Visita Topolobampo</h1>
+            <h5 text-justify>El Puerto de Topolobampo esta ubicado al Noroeste del país sobre la costa oriental del Golfo de California, pertenece al municipio de Ahome, estado de Sinaloa y se encuentra a una distancia de 25 Km de la Ciudad de Los Mochis, Sinaloa y a 322 kilómetros de la entrada al Golfo de California.</h5>
+          </ion-slide>
+        
+          <ion-slide style="background-color: rgb(190, 216, 175)">
+            <div>
+              <img src=".././/assets/icon/maviri.jpg">
+              <ion-fab  right bottom>
+                  <button ion-fab mini><ion-icon name="pin"></ion-icon></button>
+                </ion-fab>
+            </div>
+            <h1>El Maviri</h1>
+            <h5>En la zona norte del territorio sinaloense se ubica El Maviri, una vasta franja de territorio costero ubicada entre Bahía de Topolobampo y el Mar de Cortés. Es una zona costera de arena suave y cristalino oleaje. Se trata del balneario más frecuentado por quienes habitan en Los Mochis. Por otra parte, la Isla del Cerro del Maviri tiene aproximadamente dos kilómetros de zonas costeras y está vinculada por un puente a la carretera panorámica que se extiende desde Topolobampo.</h5>
+          </ion-slide>
+        
+          <ion-slide style="background-color: rgb(8, 151, 151)">
+            <div>
+              <img src="../../assets/icon/parque.jpg">
+              <ion-fab  right bottom>
+                  <button ion-fab mini><ion-icon name="pin"></ion-icon></button>
+                </ion-fab>
+            </div>
+            <h1>Parque Sinaloa</h1>
+            <h5>El Parque Sinaloa abarca 16 hectáreas y al interior de este se encuentra el Jardín Botánico, que fue diseñado por la arquitecta paisajista Florence Yoch.</h5>
+          </ion-slide>
+        
+        </ion-slides>
 </ion-content>
