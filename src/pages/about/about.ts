@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-
+import { AlertController } from "ionic-angular";
 @Component({
   selector: 'page-about',
   templateUrl: 'about.html'
@@ -8,7 +8,7 @@ import { NavController } from 'ionic-angular';
 export class AboutPage {
 
   items: string[];
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
 
   }
   initializeItems() {
@@ -41,6 +41,29 @@ export class AboutPage {
         return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
+  }
+
+  presentConfirm() {
+    const alert = this.alertCtrl.create({
+      title: 'FILTRO',
+      message: 'Desea filtrar su busqueda?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Si',
+          handler: () => {
+            console.log('Buy clicked');
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }

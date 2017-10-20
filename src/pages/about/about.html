@@ -11,22 +11,34 @@
   <ion-list>
     <ion-item>
         <ion-label floating>Que Quieres Visitar?</ion-label>
-        <ion-input type="text" [(ngModel)]="buscar" value=""></ion-input>
-        <hr>
-        <ion-label> Filtro</ion-label>
-        <ion-toggle disabled checked="false"></ion-toggle>
-       
-        
+        <ion-select [(ngModel)]="seleccion">
+          <ion-option>Hotel</ion-option>
+          <ion-option>Restaurante</ion-option>
+          <ion-option>Playa</ion-option>
+          <ion-option>Discoteca</ion-option>
+          <ion-option>Bar</ion-option>
+          <ion-option>Museo</ion-option>
+          <ion-option>Parque</ion-option>
+          <ion-option>Iglesia</ion-option>
+          <ion-option>Supermercado</ion-option>
+          <ion-option>Zonas Centricas</ion-option>
+          <ion-option>Plazuela</ion-option>
+          <ion-option>Plazas</ion-option>
+          <ion-option>Gasolinera</ion-option>
+          <ion-option>Centrales</ion-option>
+          <ion-option>Aeropuerto</ion-option>
+          <ion-option>Monumentos</ion-option>
+        </ion-select>
     </ion-item>
-    <button ion-button full [disabled]="!buscar">Buscar</button>
+    <button ion-button full [disabled]="!seleccion" (click)="presentConfirm()">Buscar</button>
   </ion-list>
   <ion-badge item-end>
-    <ion-item>
+    <ion-item zooming="true" direction="xy" delegate-handle="zoom-pane" class="zoom-pane" min-zoom="1" scrollbar-x="false" scrollbar-y="false" overflow-scroll="false">
       <h1 text-center>Cerro De La Memoria</h1>
-      <img src="../../assets/icon/cerro.jpg">
-      <ion-icon name="star" item-start></ion-icon>
-      Visitas
-      <ion-badge item-end>300k</ion-badge>
+      <img class="thumb-img" src="http://static.panoramio.com/photos/large/125476783.jpg" imageViewer>
+      <!-- <ion-icon name="star" item-start></ion-icon> -->
+      <!-- Visitas -->
+      <!-- <ion-badge item-end>300k</ion-badge> -->
     </ion-item>
   </ion-badge>
   <!-- <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>

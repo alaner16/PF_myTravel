@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler, ItemSliding } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
@@ -16,6 +16,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from  'angularfire2/auth';
 import { AuthService } from '../auth/auth.service';
+import { IonicImageViewerModule } from "ionic-img-viewer";
+
 var config = {
   apiKey: "AIzaSyC6maaYwKCZMLU9bmFbkavS7UELl0cAXcg",
   authDomain: "mytravelguide-cacd1.firebaseapp.com",
@@ -39,7 +41,8 @@ var config = {
     IonicModule.forRoot(MyApp),
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(config),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    IonicImageViewerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -53,7 +56,8 @@ var config = {
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ItemSliding,
+    {provide: ErrorHandler,  useClass: IonicErrorHandler},
     FirebaseProvider,
     AuthService
   ]
