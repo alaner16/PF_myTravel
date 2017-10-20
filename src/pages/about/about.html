@@ -11,11 +11,12 @@
   <ion-list>
     <ion-item>
         <ion-label floating>Que Quieres Visitar?</ion-label>
-        <ion-item>
-          <ion-label>Filtro?</ion-label>
-          <ion-checkbox color="dark" checked="true"></ion-checkbox>
-        </ion-item> 
         <ion-input type="text" [(ngModel)]="buscar" value=""></ion-input>
+        <hr>
+        <ion-label> Filtro</ion-label>
+        <ion-toggle disabled checked="false"></ion-toggle>
+       
+        
     </ion-item>
     <button ion-button full [disabled]="!buscar">Buscar</button>
   </ion-list>
