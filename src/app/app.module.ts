@@ -2,12 +2,14 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler, ItemSliding } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { Routes, RouterModule } from "@angular/router";
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from "../pages/login/login";
+import { RegistroPage } from "../pages/registro/registro";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -27,6 +29,10 @@ var config = {
   messagingSenderId: "671971396257"
 };
 
+const routes: Routes = [
+  { path: '', component: MyApp}
+]
+
 @NgModule({
   declarations: [
     MyApp,
@@ -34,7 +40,8 @@ var config = {
     ContactPage,
     HomePage,
     TabsPage,
-    LoginPage
+    LoginPage,
+    RegistroPage
   ],
   imports: [
     BrowserModule,
@@ -42,7 +49,8 @@ var config = {
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(config),
     AngularFireAuthModule,
-    IonicImageViewerModule
+    IonicImageViewerModule,
+    RouterModule.forRoot(routes)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -51,7 +59,8 @@ var config = {
     ContactPage,
     HomePage,
     TabsPage,
-    LoginPage
+    LoginPage,
+    RegistroPage
   ],
   providers: [
     StatusBar,

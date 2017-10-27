@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ItemSliding } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'page-contact',
@@ -7,12 +7,8 @@ import { NavController, ItemSliding } from 'ionic-angular';
 })
 export class ContactPage {
 
-  constructor( public navCtrl: NavController, public slidingItem: ItemSliding) {
+  constructor( public navCtrl: NavController) {
 
-  }
-
-  share(slidingItem: ItemSliding){
-    // slidingItem.close();
   }
 
 }

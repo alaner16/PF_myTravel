@@ -59,9 +59,10 @@ export class AboutPage {
           text: 'Si',
           handler: () => {
             console.log('Buy clicked');
+            
           }
         }
-      ]
+      ] 
     });
     alert.present();
   }

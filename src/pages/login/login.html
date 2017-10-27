@@ -18,16 +18,18 @@
         <ion-list>
           <ion-item>
             <ion-label stacked>Correo Electrónico</ion-label>
-            <ion-input type="email" [(ngModel)]="email" ></ion-input>
+            <ion-input type="email" [(ngModel)]="user.email" ></ion-input>
           </ion-item>
     
           <ion-item>
             <ion-label stacked>Contraseña</ion-label>
-            <ion-input type="password" [(ngModel)]="password"></ion-input>
+            <ion-input type="password" [(ngModel)]="user.password"></ion-input>
           </ion-item>
           <hr>
           <div padding>
-            <button ion-button full (click)="login()" [disabled]="!email || !password">Iniciar Sesión</button>
+            <button ion-button full (click)="login(user)" [disabled]="!user.email || !user.password">Iniciar Sesión</button>
+            <button ion-button full (click)="registro()">Registro</button>
+            
           </div>
       
         </ion-list>
