@@ -1,6 +1,17 @@
 <ion-header>
   <ion-navbar>
+    <ion-buttons left>
+      <button ion-button (click)="perfil()">
+        <ion-icon name="person"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title text-center>Recomendados</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="salir()">
+        <ion-icon ion="md-exit" md="md-exit"></ion-icon>
+      </button>      
+    </ion-buttons>
+    
   </ion-navbar>
 </ion-header>
 
@@ -11,7 +22,7 @@
             <div>
               <img class="thumb-img" src="https://media-cdn.tripadvisor.com/media/photo-s/09/9a/e9/7f/topolobampo.jpg" imageViewer>
               <ion-fab  right bottom>
-                <button ion-fab mini><ion-icon name="pin"></ion-icon></button>
+                <button (click)="irMapa()" ion-fab mini><ion-icon name="pin"></ion-icon></button>
               </ion-fab>
             </div>
             <h1>Visita Topolobampo</h1>

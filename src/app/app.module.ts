@@ -3,6 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler, ItemSliding } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { Routes, RouterModule } from "@angular/router";
+import { Camera } from "@ionic-native/camera";
+import { Geolocation } from "@ionic-native/geolocation";
+import { GoogleMaps } from "@ionic-native/google-maps";
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -10,6 +13,8 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from "../pages/login/login";
 import { RegistroPage } from "../pages/registro/registro";
+import { PerfilPage } from "../pages/perfil/perfil";
+import { MapaPage } from "../pages/mapa/mapa";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -41,7 +46,9 @@ const routes: Routes = [
     HomePage,
     TabsPage,
     LoginPage,
-    RegistroPage
+    RegistroPage,
+    PerfilPage,
+    MapaPage
   ],
   imports: [
     BrowserModule,
@@ -60,7 +67,9 @@ const routes: Routes = [
     HomePage,
     TabsPage,
     LoginPage,
-    RegistroPage
+    RegistroPage,
+    PerfilPage,
+    MapaPage
   ],
   providers: [
     StatusBar,
@@ -68,7 +77,10 @@ const routes: Routes = [
     ItemSliding,
     {provide: ErrorHandler,  useClass: IonicErrorHandler},
     FirebaseProvider,
-    AuthService
+    AuthService,
+    Camera,
+    Geolocation,
+    GoogleMaps
   ]
 })
 export class AppModule {}
