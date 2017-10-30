@@ -31,8 +31,11 @@ export class MapaPage {
   }
 
   ionViewDidLoad() {
+    this.obtenerPosicion();
     console.log('ionViewDidLoad MapaPage');
   }
+
+  
 
   obtenerPosicion():any {
     this.geolocation.getCurrentPosition().then(response =>{
