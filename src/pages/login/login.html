@@ -51,7 +51,7 @@
           </ion-item>
           <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid &&
            loginForm.controls.email.dirty">
-            <p>Please enter a valid email address.</p>
+            <p>Ingresa correo valido.</p>
           </ion-item>
       
           <ion-item>
@@ -62,7 +62,7 @@
           </ion-item>
           <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid
           && loginForm.controls.password.dirty">
-            <p>Your password needs more than 6 characters.</p>
+            <p>Minimo 6 caracteres</p>
           </ion-item>
       
           <button ion-button block (click)="loginUser()" [disabled]="!loginForm.valid" >
@@ -70,11 +70,11 @@
           </button>
         </form>
       
-        <button ion-button block clear (click)="goToSignup()">
-          Create a new account
+        <button ion-button block  (click)="goToSignup()">
+          Crear nueva cuenta
         </button>
       
         <button ion-button block clear (click)="goToResetPassword()">
-          I forgot my password :(
+          Olvide mi contraseña :/
         </button>
       </ion-content>

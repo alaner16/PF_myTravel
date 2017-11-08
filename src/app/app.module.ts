@@ -27,7 +27,7 @@ import { AuthService } from '../auth/auth.service';
 import { IonicImageViewerModule } from "ionic-img-viewer";
 import { AuthProvider } from "../providers/auth/auth";
 import { ProfileProvider } from "../providers/profile/profile";
-
+import { EventProvider } from "../providers/event/event";
 const config = {
   apiKey: "AIzaSyC6maaYwKCZMLU9bmFbkavS7UELl0cAXcg",
   authDomain: "mytravelguide-cacd1.firebaseapp.com",
@@ -88,7 +88,8 @@ const routes: Routes = [
     GoogleMaps,
     AuthProvider,
     AngularFireDatabaseProvider,
-    ProfileProvider
+    ProfileProvider,
+    EventProvider
   ]
 })
 export class AppModule {}

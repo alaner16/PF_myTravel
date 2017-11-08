@@ -10,29 +10,37 @@
       <img src="assets/img/banner.jpg" />
       <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
         <ion-item>
-          <ion-label stacked>Email</ion-label>
-          <ion-input formControlName="email" type="email" placeholder="Your email address"
+          <ion-label stacked>Correo</ion-label>
+          <ion-input formControlName="email" type="email" placeholder="Correo"
             [class.invalid]="!signupForm.controls.email.valid && blur">
           </ion-input>
         </ion-item>
         <ion-item class="error-message" *ngIf="!signupForm.controls.email.valid
         && signupForm.controls.email.dirty">
-          <p>Please enter a valid email.</p>
+          <p>Ingrese correo valido.</p>
         </ion-item>
     
         <ion-item>
-          <ion-label stacked>Password</ion-label>
-          <ion-input formControlName="password" type="password" placeholder="Your password"
+          <ion-label stacked>Contraseña</ion-label>
+          <ion-input formControlName="password" type="password" placeholder="Contraseña"
             [class.invalid]="!signupForm.controls.password.valid && blur">
           </ion-input>
         </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Confirme contraseña</ion-label>
+            <ion-input formControlName="confirmPassword" type="password" placeholder="Contraseña"
+              [class.invalid]="!signupForm.controls.password.valid && blur">
+            </ion-input>
+          </ion-item>
+
         <ion-item class="error-message" *ngIf="!signupForm.controls.password.valid  &&
         signupForm.controls.password.dirty">
-          <p>Your password needs more than 6 characters.</p>
+          <p>Minimo 6 caracteres.</p>
         </ion-item>
     
         <button ion-button block type="submit" [disabled]="!signupForm.valid">
-          Create an Account
+          Crear cuenta
         </button>
       </form>
     </ion-content>

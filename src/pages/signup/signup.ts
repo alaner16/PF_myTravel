@@ -36,6 +36,10 @@ export class SignupPage {
       password: [
         '',
         Validators.compose([Validators.minLength(6), Validators.required])
+      ],
+      confirmPassword: [
+        '',
+        Validators.compose([Validators.minLength(6), Validators.required])
       ]
     });
   }

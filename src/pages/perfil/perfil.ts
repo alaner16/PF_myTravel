@@ -4,6 +4,7 @@ import { Camera, CameraOptions } from "@ionic-native/camera";
 import firebase from 'firebase';
 import { ProfileProvider } from "../../providers/profile/profile";
 import { AuthProvider } from "../../providers/auth/auth";
+import { EventProvider } from "../../providers/event/event";
 /**
  * Generated class for the PerfilPage page.
  *
@@ -16,7 +17,8 @@ import { AuthProvider } from "../../providers/auth/auth";
   templateUrl: 'perfil.html',
 })
 export class PerfilPage {
-
+  public currentEvent: any = {};
+  guestName: string;
   public userProfile: any;
   public birthDate: string;
   guestPicture: string;
@@ -25,7 +27,8 @@ export class PerfilPage {
     public alertCtrl: AlertController,
     public authProvider: AuthProvider,
     public profileProvider: ProfileProvider,
-    public cameraPlugin: Camera
+    public cameraPlugin: Camera,
+    public eventProvider: EventProvider
   ) {}
 
   ionViewDidLoad() {
@@ -141,6 +144,20 @@ export class PerfilPage {
           console.log('ERROR -> ' + JSON.stringify(error));
         }
       );
+  }
+
+  addGuest(guestName: string): void {
+    this.eventProvider
+      .addGuest(
+        guestName,
+        this.currentEvent.id,
+        this.currentEvent.price,
+        this.guestPicture
+      )
+      .then(newGuest => {
+        this.guestName = '';
+        this.guestPicture = null;
+      });
   }
     
 
