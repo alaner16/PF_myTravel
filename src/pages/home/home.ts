@@ -4,6 +4,7 @@ import { AngularFireAuth } from "angularfire2/auth";
 import { PerfilPage } from "../perfil/perfil";
 import { LoginPage } from "../login/login";
 import { MapaPage } from "../mapa/mapa";
+import { AngularFireModule } from "angularfire2";
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -11,7 +12,7 @@ import { MapaPage } from "../mapa/mapa";
 export class HomePage {
 
  
-  constructor(public navCtrl: NavController, private toast: ToastController, private afAuth: AngularFireAuth) {
+  constructor(public afm: AngularFireModule,public navCtrl: NavController, private toast: ToastController, private afAuth: AngularFireAuth) {
     
   }
 
@@ -32,7 +33,7 @@ export class HomePage {
     })
   }
 
-  perfil(){
+  goToProfile(): void {
     this.navCtrl.push(PerfilPage);
   }
 

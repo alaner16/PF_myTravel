@@ -4,7 +4,7 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<!-- <ion-header>
 
   <ion-navbar>
     <ion-title>perfil</ion-title>
@@ -40,4 +40,90 @@
 
   </ion-list>
   
-</ion-content>
+</ion-content> -->
+<ion-header>
+    <ion-navbar color="primary">
+      <ion-title>Profile</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="logOut()">
+          <ion-icon name="log-out"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <ion-list>
+      <ion-list-header>
+        Información Personal 
+      </ion-list-header>
+      <ion-card-content>
+          <!-- <ion-row> -->
+            <!-- <ion-col col-8>
+              <ion-item>
+                <ion-label stacked>Name</ion-label>
+                <ion-input [(ngModel)]="guestName" type="text" placeholder="c"></ion-input>
+              </ion-item>
+            </ion-col> -->
+    
+            <ion-col center col-4>
+              <button ion-button icon-only (click)="takePicture()">
+                <ion-icon name="camera"></ion-icon>
+              </button>
+              <!-- <img>{{userProfile?.}}</img> -->
+            </ion-col>
+          <!-- </ion-row> -->
+          <span *ngIf="guestPicture">Picture taken!</span>
+
+          <ion-item (click)="updateName()">
+              <ion-grid>
+                <ion-row>
+                  <ion-col col-6> Nombre </ion-col>
+                  <ion-col col-6 *ngIf="userProfile?.firstName || userProfile?.lastName">
+                    {{userProfile?.firstName}} {{userProfile?.lastName}}
+                  </ion-col>
+                  <ion-col col-6 class="placeholder-profile" *ngIf="!userProfile?.firstName">
+                    <span> Toca para editar. </span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+            <ion-item >
+              <ion-label class="dob-label">Cumpleaños</ion-label>
+              <ion-datetime displayFormat="MMM D, YYYY" pickerFormat="D MMM YYYY" [(ngModel)]="birthDate"
+                (ionChange)="updateDOB(birthDate)"></ion-datetime>
+            </ion-item>
+            <ion-item  (click)="updateEmail()">
+              <ion-grid>
+                <ion-row>
+                  <ion-col col-6> Email </ion-col>
+                  <ion-col col-6 *ngIf="userProfile?.email">
+                    {{userProfile?.email}}
+                  </ion-col>
+                  <ion-col col-6 class="placeholder-profile" *ngIf="!userProfile?.email">
+                    <span> Toca para editar. </span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+        
+            <ion-item  (click)="updatePassword()">
+              <ion-grid>
+                <ion-row>
+                  <ion-col col-6> Contraseña </ion-col>
+                  <ion-col col-6 class="placeholder-profile">
+                    <span> Toca para editar. </span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+    
+
+
+
+          <!-- <button ion-button color="primary" block (click)="addGuest(guestName)" [disabled]="!(name || cumple || email || password) ">
+            Guardar
+          </button> -->
+        </ion-card-content>
+      </ion-list>
+  </ion-content>

@@ -1,4 +1,4 @@
-<ion-header *ion-header >
+<!-- <ion-header *ion-header >
     
       <ion-navbar>
         <button ion-button menuToggle>
@@ -13,7 +13,6 @@
     
     <ion-content padding class="col col-center">
       <h1 text-center>My Travel Guide</h1>
-        <!-- <h1 *ngIf="authService.user | async">Bienvenido {{ (authService.user | async)?.email }}!</h1> -->
       <div class="tabs tabs-item-hide">
         <ion-list>
           <ion-item>
@@ -35,4 +34,47 @@
         </ion-list>
       </div>
     </ion-content>
-    
+     -->
+     <ion-header>
+        <ion-navbar>
+          <ion-title>Login</ion-title>
+        </ion-navbar>
+      </ion-header>
+      
+      <ion-content padding>
+        <form [formGroup]="loginForm"  novalidate>
+          <ion-item>
+            <ion-label stacked>Email</ion-label>
+            <ion-input formControlName="email" type="email" placeholder="Your email address"
+              [class.invalid]="!loginForm.controls.email.valid && blur">
+            </ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid &&
+           loginForm.controls.email.dirty">
+            <p>Please enter a valid email address.</p>
+          </ion-item>
+      
+          <ion-item>
+            <ion-label stacked>Password</ion-label>
+            <ion-input formControlName="password" type="password" placeholder="Your password"
+              [class.invalid]="!loginForm.controls.password.valid && blur">
+            </ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid
+          && loginForm.controls.password.dirty">
+            <p>Your password needs more than 6 characters.</p>
+          </ion-item>
+      
+          <button ion-button block (click)="loginUser()" [disabled]="!loginForm.valid" >
+            Log In
+          </button>
+        </form>
+      
+        <button ion-button block clear (click)="goToSignup()">
+          Create a new account
+        </button>
+      
+        <button ion-button block clear (click)="goToResetPassword()">
+          I forgot my password :(
+        </button>
+      </ion-content>

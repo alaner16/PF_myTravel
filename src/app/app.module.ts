@@ -6,6 +6,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { Camera } from "@ionic-native/camera";
 import { Geolocation } from "@ionic-native/geolocation";
 import { GoogleMaps } from "@ionic-native/google-maps";
+import { HttpModule } from "@angular/http";
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -19,13 +20,15 @@ import { MapaPage } from "../pages/mapa/mapa";
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FirebaseProvider } from '../providers/firebase/firebase';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabaseModule, AngularFireDatabaseProvider } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from  'angularfire2/auth';
 import { AuthService } from '../auth/auth.service';
 import { IonicImageViewerModule } from "ionic-img-viewer";
+import { AuthProvider } from "../providers/auth/auth";
+import { ProfileProvider } from "../providers/profile/profile";
 
-var config = {
+const config = {
   apiKey: "AIzaSyC6maaYwKCZMLU9bmFbkavS7UELl0cAXcg",
   authDomain: "mytravelguide-cacd1.firebaseapp.com",
   databaseURL: "https://mytravelguide-cacd1.firebaseio.com",
@@ -44,20 +47,22 @@ const routes: Routes = [
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage,
     LoginPage,
+    TabsPage,
     RegistroPage,
     PerfilPage,
     MapaPage
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(config),
     AngularFireAuthModule,
     IonicImageViewerModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    // LoginPage
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -80,7 +85,11 @@ const routes: Routes = [
     AuthService,
     Camera,
     Geolocation,
-    GoogleMaps
+    GoogleMaps,
+    AuthProvider,
+    AngularFireDatabaseProvider,
+    ProfileProvider
   ]
 })
 export class AppModule {}
+
