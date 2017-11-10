@@ -36,45 +36,45 @@
     </ion-content>
      -->
      <ion-header>
-        <ion-navbar>
-          <ion-title>Login</ion-title>
+        <ion-navbar color="trans">
+          <ion-title text-center color="primary">Bienvenid@</ion-title>
         </ion-navbar>
       </ion-header>
       
       <ion-content padding>
         <form [formGroup]="loginForm"  novalidate>
           <ion-item>
-            <ion-label stacked>Email</ion-label>
-            <ion-input formControlName="email" type="email" placeholder="Your email address"
-              [class.invalid]="!loginForm.controls.email.valid && blur">
+            <ion-label stacked>Correo</ion-label>
+            <ion-input formControlName="email" type="email" placeholder="Correo Electronico"
+              [class.invalid]="!loginForm.controls.email.valid && !!blur">
             </ion-input>
           </ion-item>
-          <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid &&
-           loginForm.controls.email.dirty">
+          <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid && 
+          !!loginForm.controls.email.dirty">
             <p>Ingresa correo valido.</p>
           </ion-item>
       
           <ion-item>
-            <ion-label stacked>Password</ion-label>
-            <ion-input formControlName="password" type="password" placeholder="Your password"
-              [class.invalid]="!loginForm.controls.password.valid && blur">
+            <ion-label stacked>Contraseña</ion-label>
+            <ion-input formControlName="password" type="password" placeholder="Contraseña"
+              [class.invalid]="!loginForm.controls.password.valid && !!blur">
             </ion-input>
           </ion-item>
-          <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid
-          && loginForm.controls.password.dirty">
+          <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid && 
+          !!loginForm.controls.password.dirty">
             <p>Minimo 6 caracteres</p>
           </ion-item>
       
-          <button ion-button block (click)="loginUser()" [disabled]="!loginForm.valid" >
-            Log In
+          <button ion-button block clear (click)="loginUser()" [disabled]="!loginForm.valid" >
+            Iniciar Sesion
           </button>
         </form>
       
-        <button ion-button block  (click)="goToSignup()">
+        <button ion-button block clear  (click)="goToSignup()">
           Crear nueva cuenta
         </button>
       
         <button ion-button block clear (click)="goToResetPassword()">
-          Olvide mi contraseña :/
+          Olvide mi contraseña :(
         </button>
       </ion-content>

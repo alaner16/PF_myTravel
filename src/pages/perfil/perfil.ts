@@ -17,6 +17,8 @@ import { EventProvider } from "../../providers/event/event";
   templateUrl: 'perfil.html',
 })
 export class PerfilPage {
+  public eventListRef: firebase.database.Reference;
+  
   public currentEvent: any = {};
   guestName: string;
   public userProfile: any;
@@ -29,7 +31,15 @@ export class PerfilPage {
     public profileProvider: ProfileProvider,
     public cameraPlugin: Camera,
     public eventProvider: EventProvider
-  ) {}
+  ) {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.eventListRef = firebase
+          .database()
+          .ref(`/userProfile/${user.uid}/eventList`);
+      }
+    });
+  }
 
   ionViewDidLoad() {
     this.profileProvider.getUserProfile().on('value', userProfileSnapshot => {
@@ -80,21 +90,27 @@ export class PerfilPage {
     let alert: Alert = this.alertCtrl.create({
       inputs: [
         { name: 'newEmail', placeholder: 'Nuevo Correo' },
-        { name: 'password', placeholder: 'Nueva Contraseña', type: 'password' }
+        { name: 'password', placeholder: 'Nueva Contraseña', type: 'password' },
+        { name: 'confPassword', placeholder: 'Confirme Contraseña', type: 'password' }
       ],
       buttons: [
         { text: 'Cancelar' },
         {
           text: 'Guardar',
           handler: data => {
-            this.profileProvider
-              .updateEmail(data.newEmail, data.password)
+            if(data.newEmail == data.confPassword){
+              this.profileProvider
+              .updateEmail(data.newEmail, data.password )
               .then(() => {
-                console.log('Email Changed Successfully');
+                console.log('Correo actualizado correctamente');
               })
               .catch(error => {
                 console.log('ERROR: ' + error.message);
               });
+            }else{
+              console.log("ERROR...diferente contraseña")
+            }
+            
           }
         }
       ]
@@ -105,18 +121,25 @@ export class PerfilPage {
   updatePassword(): void {
     let alert: Alert = this.alertCtrl.create({
       inputs: [
-        { name: 'newPassword', placeholder: 'Nueva Contraseña', type: 'password' },
-        { name: 'oldPassword', placeholder: 'Contraseña anterior', type: 'password' }
+        { name: 'oldPassword', placeholder: 'Contraseña anterior', type: 'password' },
+        { name: 'newPassword', placeholder: 'Nueva Contraseña', type: 'password' },        
+        { name: 'confPassword', placeholder: "Confirme Contraseña", type: 'password'}
       ],
       buttons: [
         { text: 'Cancelar' },
         {
+          
           text: 'Guardar',
           handler: data => {
-            this.profileProvider.updatePassword(
-              data.newPassword,
-              data.oldPassword
-            );
+            if(data.newPassword == data.confPassword){
+              this.profileProvider.updatePassword(
+                data.newPassword,
+                data.oldPassword,
+              );
+            }else{
+              console.log('Contraseñas diferentes')
+            }
+            
           }
         }
       ]
@@ -146,45 +169,62 @@ export class PerfilPage {
       );
   }
 
-  addGuest(guestName: string): void {
-    this.eventProvider
-      .addGuest(
-        guestName,
-        this.currentEvent.id,
-        this.currentEvent.price,
-        this.guestPicture
-      )
+  addGuest(
+    guestName: string,
+    eventId: string,
+    eventPrice: number,
+    guestPicture: string = null
+  ): PromiseLike<any> {
+    return this.eventListRef
+      .child(`${eventId}/guestList`)
+      .push({ guestName })
       .then(newGuest => {
-        this.guestName = '';
-        this.guestPicture = null;
+        this.eventListRef.child(eventId).transaction(event => {
+          event.revenue += eventPrice;
+          return event;
+        });
+
+        if (guestPicture != null) {
+          firebase
+            .storage()
+            .ref(`/guestProfile/${newGuest.key}/profilePicture.png`)
+            .putString(guestPicture, 'base64', {
+              contentType: 'image/png'
+            })
+            .then(savedPicture => {
+              this.eventListRef
+                .child(`${eventId}/guestList/${newGuest.key}/profilePicture`)
+                .set(savedPicture.downloadURL);
+            });
+        }
       });
   }
     
 
-  // getPicture(){
-  //   let options: CameraOptions = {
-  //     destinationType: this.camera.DestinationType.DATA_URL,
-  //     targetWidth: 1000,
-  //     targetHeight: 1000,
-  //     quality: 100
-  //   }
-  //   this.camera.getPicture( options ).then(ImageData => {
-  //     this.image = `data:image/jpeg;base64,${ImageData}`;
-  //   })
-  //   .then(profilePicture =>{
-  //     const selfieRef = firebase.storage().ref(`profilePictures/user1/profilePicture.png`);
-  //     selfieRef.putString(profilePicture, 'base64', {contentType: 'image/png'})
-  //     .then(savedProfilePicture => {
-  //       firebase
-  //         .database()
-  //         .ref(`users/user1/profilePicture`)
-  //         .set(savedProfilePicture.downloadURL);
-  //     });
-  //   })
-  //   .catch(error =>{
-  //     console.error(error);s
-  //   })
-  // }
+  getPicture(){
+    let options: CameraOptions = {
+      destinationType: this.cameraPlugin.DestinationType.DATA_URL,
+      targetWidth: 1000,
+      targetHeight: 1000,
+      quality: 100
+    }
+    this.cameraPlugin.getPicture( options ).then(ImageData => {
+      this.image = `data:image/jpeg;base64,${ImageData}`;
+    })
+    .then(profilePicture =>{
+      const selfieRef = firebase.storage().ref(`profilePictures/user1/profilePicture.png`);
+      selfieRef.putString(profilePicture, 'base64', {contentType: 'image/png'})
+      .then(savedProfilePicture => {
+        firebase
+          .database()
+          .ref(`users/user1/profilePicture`)
+          .set(savedProfilePicture.downloadURL);
+      });
+    })
+    .catch(error =>{
+      console.error(error);
+    })
+  }
 
   
 

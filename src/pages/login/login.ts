@@ -65,6 +65,7 @@ import { EmailValidator } from '../../validators/email';
 import { AuthProvider } from '../../providers/auth/auth';
 import { HomePage } from '../home/home';
 import * as firebase from "firebase";
+import { TabsPage } from "../tabs/tabs";
 
 @IonicPage()
 @Component({
@@ -115,7 +116,7 @@ export class LoginPage {
       this.authProvider.loginUser(email, password).then(
         authData => {
           this.loading.dismiss().then(() => {
-            this.navCtrl.push(HomePage);
+            this.navCtrl.setRoot(TabsPage);
           });
         },
         error => {

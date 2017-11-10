@@ -5,6 +5,9 @@ import { PerfilPage } from "../perfil/perfil";
 import { LoginPage } from "../login/login";
 import { MapaPage } from "../mapa/mapa";
 import { AngularFireModule } from "angularfire2";
+import { AuthProvider } from "../../providers/auth/auth";
+
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -12,11 +15,17 @@ import { AngularFireModule } from "angularfire2";
 export class HomePage {
 
  
-  constructor(public afm: AngularFireModule,public navCtrl: NavController, private toast: ToastController, private afAuth: AngularFireAuth) {
+  constructor(
+    public authProvider: AuthProvider,
+    public afm: AngularFireModule,
+    public navCtrl: NavController, 
+    private toast: ToastController, 
+    private afAuth: AngularFireAuth) {
     
   }
 
   ionViewWillLoad(){
+    
     this.afAuth.authState.subscribe(data =>{
       if (data.email && data.uid){
         this.toast.create({
@@ -29,6 +38,7 @@ export class HomePage {
           message: 'No eres bienvenido',
           duration: 3000
         }).present();
+        this.navCtrl.setRoot(LoginPage);
       }
     })
   }
@@ -39,8 +49,13 @@ export class HomePage {
 
   salir(){
     this.afAuth.auth.signOut();
-    this.navCtrl.push(LoginPage);    
+    this.navCtrl.setRoot(LoginPage);    
   }
+  // salir(){
+  //   this.authProvider.logoutUser().then(() => {
+  //     this.navCtrl.setRoot('LoginPage');
+  //   });
+  // }
 
   irMapa(){
     this.navCtrl.push(MapaPage);

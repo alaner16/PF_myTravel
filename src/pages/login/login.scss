@@ -1,5 +1,4 @@
 page-login {
-    background-image: url('../../assets/icon/inicio.gif');
     ion-content{
         background-image: url(http://s1.1zoom.me/b5057/431/Roads_France_Paris_Arch_512349_360x640.jpg);
         background-size: cover;
@@ -23,5 +22,8 @@ page-login {
     ion-img, ion-item, ion-label, ion-toolbar, button, h1 {
         background-color: transparent !important;
         text-shadow: 1px 1px 1px rgb(0,0,0);
-      }
+    }
+    ion-header{
+        background-color: rebeccapurple
+    }
 }
