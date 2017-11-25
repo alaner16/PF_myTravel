@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler, ItemSliding } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -19,7 +19,6 @@ import { MapaPage } from "../pages/mapa/mapa";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { FirebaseProvider } from '../providers/firebase/firebase';
 import { AngularFireDatabaseModule, AngularFireDatabaseProvider } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from  'angularfire2/auth';
@@ -28,6 +27,8 @@ import { IonicImageViewerModule } from "ionic-img-viewer";
 import { AuthProvider } from "../providers/auth/auth";
 import { ProfileProvider } from "../providers/profile/profile";
 import { EventProvider } from "../providers/event/event";
+import { EmojiProvider } from '../providers/emoji/emoji';
+import { ChatService, ChatMessage } from "../providers/chat/chat";
 const config = {
   apiKey: "AIzaSyC6maaYwKCZMLU9bmFbkavS7UELl0cAXcg",
   authDomain: "mytravelguide-cacd1.firebaseapp.com",
@@ -37,9 +38,9 @@ const config = {
   messagingSenderId: "671971396257"
 };
 
-const routes: Routes = [
-  { path: '', component: MyApp}
-]
+// const routes: Routes = [
+//   { path: '', component: MyApp}
+// ]
 
 @NgModule({
   declarations: [
@@ -56,12 +57,15 @@ const routes: Routes = [
   imports: [
     HttpModule,
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{
+      tabsHidenOnSubPages: true,
+      tabsLayout: 'icon-left'
+    }),
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(config),
     AngularFireAuthModule,
     IonicImageViewerModule,
-    RouterModule.forRoot(routes),
+    // RouterModule.forRoot(routes),
     // LoginPage
   ],
   bootstrap: [IonicApp],
@@ -81,7 +85,7 @@ const routes: Routes = [
     SplashScreen,
     ItemSliding,
     {provide: ErrorHandler,  useClass: IonicErrorHandler},
-    FirebaseProvider,
+    EmojiProvider,
     AuthService,
     Camera,
     Geolocation,
@@ -89,8 +93,11 @@ const routes: Routes = [
     AuthProvider,
     AngularFireDatabaseProvider,
     ProfileProvider,
-    EventProvider
-  ]
+    EventProvider,
+    ChatService,
+    ChatMessage
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}
 

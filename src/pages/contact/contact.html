@@ -1,11 +1,21 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title text-center>
-      Mensajes
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content>
-    
-</ion-content>
+    <ion-navbar>
+      <ion-title text-align>Chat</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+  
+    <ion-list>
+  
+      <ion-item navPush="Chat"
+                [navParams]="toUser">
+        <ion-avatar item-left>
+          <img src="./assets/to-user.jpg">
+        </ion-avatar>
+        <h2>Barack Obama</h2>
+        <p>Para cuando la posada?</p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  

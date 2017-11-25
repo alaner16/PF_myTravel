@@ -201,30 +201,30 @@ export class PerfilPage {
   }
     
 
-  getPicture(){
-    let options: CameraOptions = {
-      destinationType: this.cameraPlugin.DestinationType.DATA_URL,
-      targetWidth: 1000,
-      targetHeight: 1000,
-      quality: 100
-    }
-    this.cameraPlugin.getPicture( options ).then(ImageData => {
-      this.image = `data:image/jpeg;base64,${ImageData}`;
-    })
-    .then(profilePicture =>{
-      const selfieRef = firebase.storage().ref(`profilePictures/user1/profilePicture.png`);
-      selfieRef.putString(profilePicture, 'base64', {contentType: 'image/png'})
-      .then(savedProfilePicture => {
-        firebase
-          .database()
-          .ref(`users/user1/profilePicture`)
-          .set(savedProfilePicture.downloadURL);
-      });
-    })
-    .catch(error =>{
-      console.error(error);
-    })
-  }
+  // getPicture(){
+  //   let options: CameraOptions = {
+  //     destinationType: this.cameraPlugin.DestinationType.DATA_URL,
+  //     targetWidth: 1000,
+  //     targetHeight: 1000,
+  //     quality: 100
+  //   }
+  //   this.cameraPlugin.getPicture( options ).then(ImageData => {
+  //     this.image = `data:image/jpeg;base64,${ImageData}`;
+  //   })
+  //   .then(profilePicture =>{
+  //     const selfieRef = firebase.storage().ref(`profilePictures/user1/profilePicture.png`);
+  //     selfieRef.putString(profilePicture, 'base64', {contentType: 'image/png'})
+  //     .then(savedProfilePicture => {
+  //       firebase
+  //         .database()
+  //         .ref(`users/user1/profilePicture`)
+  //         .set(savedProfilePicture.downloadURL);
+  //     });
+  //   })
+  //   .catch(error =>{
+  //     console.error(error);
+  //   })
+  // }
 
   
 

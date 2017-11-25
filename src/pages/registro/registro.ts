@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from "angularfire2/auth";
 import { User } from "../../modelos/user";
 import { TabsPage } from "../tabs/tabs";
+import { LoginPage } from '../login/login';
 /**
  * Generated class for the RegistroPage page.
  *
@@ -21,17 +22,22 @@ export class RegistroPage {
   constructor(private afAuth: AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  async registro(user: User){
-    try{
-      const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
-      console.log(result)
-      if(result){
-        this.navCtrl.push(TabsPage);
-      }
-    }
-    catch(e){
-      console.error(e)
-    }
+  
+
+  registro(){
+    console.log('hola pútito')
+    // try{
+    //   console.log('entre try');
+    //   const result = this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
+    //   this.navCtrl.setRoot(LoginPage);
+    //   console.log(result)
+    //   if(result){
+    //     this.navCtrl.setRoot(LoginPage);
+    //   }
+    // }
+    // catch(e){
+    //   console.error(e)
+    // }
    
   }
 
