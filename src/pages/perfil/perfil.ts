@@ -5,6 +5,7 @@ import firebase from 'firebase';
 import { ProfileProvider } from "../../providers/profile/profile";
 import { AuthProvider } from "../../providers/auth/auth";
 import { EventProvider } from "../../providers/event/event";
+import { LoginPage } from "../login/login";
 /**
  * Generated class for the PerfilPage page.
  *
@@ -50,7 +51,7 @@ export class PerfilPage {
 
   logOut(): void {
     this.authProvider.logoutUser().then(() => {
-      this.navCtrl.setRoot('LoginPage');
+      this.navCtrl.setRoot(LoginPage);
     });
   }
 
