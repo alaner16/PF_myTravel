@@ -24,10 +24,14 @@ export class HomePage {
     
   }
 
+  ionViewWillUnload(){
+    this.navCtrl.setRoot(LoginPage);
+  }
+
   ionViewWillLoad(){
     
     this.afAuth.authState.subscribe(data =>{
-      if (data.email && data.uid){
+      if ( data && data.email && data.uid){
         this.toast.create({
           message: `Bienvenido a MyTravelGuide, ${data.email}`,
           duration: 3000
@@ -49,7 +53,7 @@ export class HomePage {
 
   salir(){
     this.afAuth.auth.signOut();
-    this.navCtrl.setRoot(LoginPage);    
+    this.navCtrl.push(LoginPage);    
   }
   // salir(){
   //   this.authProvider.logoutUser().then(() => {

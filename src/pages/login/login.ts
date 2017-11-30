@@ -95,6 +95,12 @@ export class LoginPage {
     });
   }
 
+  ionViewDidEnter(){
+    // this.navCtrl.setRoot(LoginPage);
+  }
+
+  
+
   goToSignup(): void {
     this.navCtrl.push('SignupPage');
   }
