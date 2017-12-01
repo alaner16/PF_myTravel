@@ -16,6 +16,7 @@ import { LoginPage } from "../pages/login/login";
 import { RegistroPage } from "../pages/registro/registro";
 import { PerfilPage } from "../pages/perfil/perfil";
 import { MapaPage } from "../pages/mapa/mapa";
+import { MapaDirectionsPage } from "../pages/mapa-directions/mapa-directions";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -52,7 +53,8 @@ const config = {
     TabsPage,
     RegistroPage,
     PerfilPage,
-    MapaPage
+    MapaPage,
+    MapaDirectionsPage
   ],
   imports: [
     HttpModule,
@@ -78,7 +80,8 @@ const config = {
     LoginPage,
     RegistroPage,
     PerfilPage,
-    MapaPage
+    MapaPage,
+    MapaDirectionsPage
   ],
   providers: [
     StatusBar,
